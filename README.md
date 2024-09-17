@@ -9,19 +9,26 @@
 
 ## Table of Contents
 
-1. [Overview](#overview)
-2. [Module Description - What the module does and why it is useful](#module-description)
-3. [Setup - The basics of getting started with JIRA](#setup)
-    * [JIRA Prerequisites](#jira-prerequisites)
-    * [What JIRA affects](#what-jira-affects)
-    * [Beginning with JIRA](#beginning-with-jira)
-    * [Upgrades](#upgrades)
-4. [Usage - Configuration options and additional functionality](#usage)
-5. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
-6. [Limitations - OS compatibility, etc.](#limitations)
-7. [Development - Guide for contributing to the module](#development)
-8. [Testing - How to test the JIRA module](#testing)
-9. [Contributors](#contributors)
+- [JIRA module for Puppet](#jira-module-for-puppet)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [Module Description](#module-description)
+  - [Setup](#setup)
+    - [JIRA Prerequisites](#jira-prerequisites)
+    - [What JIRA affects](#what-jira-affects)
+    - [Beginning with JIRA](#beginning-with-jira)
+      - [Basic example](#basic-example)
+      - [Upgrades](#upgrades)
+        - [Upgrades to JIRA](#upgrades-to-jira)
+  - [Usage](#usage)
+    - [A more complex example](#a-more-complex-example)
+    - [Hiera examples](#hiera-examples)
+  - [Reference](#reference)
+  - [Limitations](#limitations)
+  - [Development](#development)
+  - [Testing](#testing)
+    - [How to test the JIRA module](#how-to-test-the-jira-module)
+  - [Contributors](#contributors)
 
 ## Overview
 
@@ -40,7 +47,7 @@ Puppet.
 * JIRA requires a Java Developers Kit (JDK) or Java Run-time Environment (JRE)
   platform to be installed on your server's operating system. Oracle JDK / JRE
   (formerly Sun JDK / JRE) versions 8 (and 11 since JIRA 8.2) are currently
-  supported by Atlassian. OpenJDK version 8 (and 11 since JIRA 8.2) are supported
+  supported by Atlassian. OpenJDK version 8 (11 since JIRA 8.2, 17 since JIRA 9.5) are supported
   as well - Atlassian recommends to use AdoptOpenJDK to get better support
 
 * JIRA requires a relational database to store its issue data. This module
