@@ -36,19 +36,23 @@ class jira::install {
     }
   }
 
-  file { $jira::homedir:
-    ensure => 'directory',
-    owner  => $jira::user,
-    group  => $jira::group,
-    mode   => $jira::homedir_mode,
+  if $jira::manage_homedir {
+    file { $jira::homedir:
+      ensure => 'directory',
+      owner  => $jira::user,
+      group  => $jira::group,
+      mode   => $jira::homedir_mode,
+    }
   }
 
-  if ! defined(File[$jira::installdir]) {
-    file { $jira::installdir:
-      ensure => 'directory',
-      owner  => $jira::installdir_owner,
-      group  => $jira::installdir_group,
-      mode   => $jira::installdir_mode,
+  if $jira::manage_installdir {
+    if ! defined(File[$jira::installdir]) {
+      file { $jira::installdir:
+        ensure => 'directory',
+        owner  => $jira::installdir_owner,
+        group  => $jira::installdir_group,
+        mode   => $jira::installdir_mode,
+      }
     }
   }
 

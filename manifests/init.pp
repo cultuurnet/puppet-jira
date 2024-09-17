@@ -21,8 +21,12 @@
 #   Atlassian product to install.
 # @param installdir
 #   The directory in which JIRA software packages will be extracted
+# @param manage_installdir
+#   Create the installdir. Installdir will not be created when set to false. Default true.
 # @param homedir
 #   The directory for JIRA's runtime data that persists between versions.
+# @param manage_homedir
+#   Create the homedir. Homedir will not be created when set to false. Default true.
 # @param manage_user
 #   Whether to manage the service user
 # @param user
@@ -287,7 +291,9 @@ class jira (
   String $version                                                   = '8.13.5',
   String[1] $product                                                = 'jira',
   Stdlib::Absolutepath $installdir                                  = '/opt/jira',
+  Boolean $manage_installdir                                        = true,
   Stdlib::Absolutepath $homedir                                     = '/home/jira',
+  Boolean $manage_homedir                                           = true,
   Boolean $manage_user                                              = true,
   String $user                                                      = 'jira',
   String $group                                                     = 'jira',

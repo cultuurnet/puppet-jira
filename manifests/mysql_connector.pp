@@ -9,13 +9,15 @@ class jira::mysql_connector (
   assert_private()
   $file = "${product}-${version}.${format}"
 
-  if ! defined(File[$installdir]) {
-    file { $installdir:
-      ensure => 'directory',
-      owner  => 'root',
-      group  => 'root',
-      mode   => '0755',
-      before => Archive["${installdir}/${file}"],
+  if $jira::manage_installdir {
+    if ! defined(File[$installdir]) {
+      file { $installdir:
+        ensure => 'directory',
+        owner  => 'root',
+        group  => 'root',
+        mode   => '0755',
+        before => Archive["${installdir}/${file}"],
+      }
     }
   }
 
