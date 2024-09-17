@@ -443,7 +443,7 @@ class jira (
     fail("\$shared_homedir must be set when \$datacenter is true")
   }
 
-  if $jvm_type == 'openjdk-17' and versioncmp($jira::version, '9.4') > 0 {
+  if $jvm_type == 'openjdk-17' and versioncmp($jira::version, '9.5') < 0 {
     fail('JIRA versions older than 9.5 have no support for opendjk-17. Please downgrade either the openjdk or upgrade the JIRA version.')
   }
 
