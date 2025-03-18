@@ -140,6 +140,8 @@
 #   Java -Xmx parameter
 # @param java_opts
 #   Configures JVM_SUPPORT_RECOMMENDED_ARGS in setenv.sh. This is the preferred option to override.
+# @param vault_enabled
+#   Boolean. Enable Hashicorp Vault support for database password retrieval.
 # @param jvm_gc_args
 #   Configures JVM_GC_ARGS in setenv.sh
 # @param jvm_code_cache_args
@@ -353,6 +355,7 @@ class jira (
   String $jvm_xms                                                   = '256m',
   String $jvm_xmx                                                   = '1024m',
   Optional[String] $java_opts                                       = undef,
+  Boolean $vault_enabled                                            = false,
   Optional[String] $jvm_gc_args                                     = undef,
   Optional[String] $jvm_code_cache_args                             = undef,
   Optional[String] $jvm_extra_args                                  = undef,

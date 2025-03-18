@@ -160,13 +160,43 @@ class jira::config {
     mode    => '0755',
   }
 
-  $dbconfig_template = $jira::use_jndi_ds ? {
-    true    => "${module_name}/dbconfig.jndi.xml.epp",
-    default => "${module_name}/dbconfig.xml.epp"
-  }
-  file { "${jira::homedir}/dbconfig.xml":
-    content => epp($dbconfig_template),
-    mode    => '0600',
+  if $jira::vault_enabled {
+    $dbconf = {
+      'atlassian-password-cipher-provider' => 'com.atlassian.secrets.store.vault.VaultSecretStore',
+      'url'                                => $jira::config::dburl,
+      'driver-class'                       => $jira::config::dbdriver,
+      'username'                           => $jira::dbuser,
+      'password'                           => $jira::dbpassword,
+      'pool-min-size'                      => $jira::config::pool_min_size,
+      'pool-max-size'                      => $jira::config::pool_max_size,
+      'pool-max-idle'                      => $jira::config::pool_max_idle,
+      'pool-max-wait'                      => $jira::config::pool_max_wait,
+      'min-evictable-idle-time-millis'     => $jira::config::min_evictable_idle_time,
+      'pool-remove-abandoned'              => $jira::config::pool_remove_abandoned,
+      'pool-remove-abandoned-timeout'      => $jira::config::pool_remove_abandoned_timeout,
+      'pool-test-while-idle'               => $jira::config::pool_test_while_idle,
+      'pool-test-on-borrow'                => $jira::config::pool_test_on_borrow,
+      'validation-query'                   => $jira::config::validation_query,
+      'validation-query-timeout'           => $jira::config::validation_query_timeout,
+      'time-between-eviction-runs-millis'  => $jira::config::time_between_eviction_runs,
+      'connection-properties'              => $jira::config::connection_settings
+    }
+
+    $dbconf.each |$key, $value| {
+      jira::dbconf { $key:
+        value   => $value
+      }
+    }
+
+  } else {
+    $dbconfig_template = $jira::use_jndi_ds ? {
+      true    => "${module_name}/dbconfig.jndi.xml.epp",
+      default => "${module_name}/dbconfig.xml.epp"
+    }
+    file { "${jira::homedir}/dbconfig.xml":
+      content => epp($dbconfig_template),
+      mode    => '0600',
+    }
   }
 
   if $jira::script_check_java_manage {
