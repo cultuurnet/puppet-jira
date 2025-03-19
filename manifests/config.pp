@@ -163,23 +163,22 @@ class jira::config {
   if $jira::vault_enabled {
     $dbconf = {
       'atlassian-password-cipher-provider' => 'com.atlassian.secrets.store.vault.VaultSecretStore',
-      'url'                                => $jira::config::dburl,
-      'driver-class'                       => $jira::config::dbdriver,
       'username'                           => $jira::dbuser,
       'password'                           => $jira::dbpassword,
-      'pool-min-size'                      => $jira::config::pool_min_size,
-      'pool-max-size'                      => $jira::config::pool_max_size,
-      'pool-max-idle'                      => $jira::config::pool_max_idle,
-      'pool-max-wait'                      => $jira::config::pool_max_wait,
-      'min-evictable-idle-time-millis'     => $jira::config::min_evictable_idle_time,
-      'pool-remove-abandoned'              => $jira::config::pool_remove_abandoned,
-      'pool-remove-abandoned-timeout'      => $jira::config::pool_remove_abandoned_timeout,
-      'pool-test-while-idle'               => $jira::config::pool_test_while_idle,
-      'pool-test-on-borrow'                => $jira::config::pool_test_on_borrow,
-      'validation-query'                   => $jira::config::validation_query,
-      'validation-query-timeout'           => $jira::config::validation_query_timeout,
-      'time-between-eviction-runs-millis'  => $jira::config::time_between_eviction_runs,
-      'connection-properties'              => $jira::config::connection_settings
+      'url'                                => $dburl,
+      'driver-class'                       => $dbdriver,
+      'pool-min-size'                      => $pool_min_size,
+      'pool-max-size'                      => $pool_max_size,
+      'pool-max-idle'                      => $pool_max_idle,
+      'pool-max-wait'                      => $pool_max_wait,
+      'min-evictable-idle-time-millis'     => $min_evictable_idle_time,
+      'pool-remove-abandoned'              => $pool_remove_abandoned,
+      'pool-remove-abandoned-timeout'      => $pool_remove_abandoned_timeout,
+      'pool-test-while-idle'               => $pool_test_while_idle,
+      'pool-test-on-borrow'                => $pool_test_on_borrow,
+      'validation-query'                   => $validation_query,
+      'validation-query-timeout'           => $validation_query_timeout,
+      'time-between-eviction-runs-millis'  => $time_between_eviction_runs
     }
 
     $dbconf.each |$key, $value| {
