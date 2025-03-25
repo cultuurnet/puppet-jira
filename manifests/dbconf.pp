@@ -5,7 +5,7 @@ define jira::dbconf (
 ) {
   require Class[jira::install]
 
-  $aug_path = "set /files${config_file}/jira-database-config/jdbc-datasource/${key}/#text ${value}"
+  $aug_path = "set /files${config_file}/jira-database-config/jdbc-datasource/${key}/#text \"${value}\""
 
   augeas { "${config_file} - ${key}":
     lens    => 'Xml.lns',
