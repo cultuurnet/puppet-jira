@@ -176,7 +176,7 @@ class jira::config {
       'pool-remove-abandoned-timeout'      => $pool_remove_abandoned_timeout,
       'pool-test-while-idle'               => $pool_test_while_idle,
       'pool-test-on-borrow'                => $pool_test_on_borrow,
-      'validation-query'                   => regsubst($validation_query,' ','\ ',"G"),
+      'validation-query'                   => $validation_query,
       'validation-query-timeout'           => $validation_query_timeout,
       'time-between-eviction-runs-millis'  => $time_between_eviction_runs
     }
