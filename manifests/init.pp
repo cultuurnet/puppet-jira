@@ -450,6 +450,10 @@ class jira (
     fail('JIRA versions older than 9.5 have no support for opendjk-17. Please downgrade either the openjdk or upgrade the JIRA version.')
   }
 
+  if $jvm_type == 'openjdk-21' and versioncmp($jira::version, '10.6') < 0 {
+    fail('JIRA versions older than 10.6 have no support for opendjk-21. Please downgrade either the openjdk or upgrade the JIRA version.')
+  }
+
   if $jvm_permgen {
     fail('jira::jvm_permgen', 'jira::jvm_permgen has been removed and no longer does anything. Configuring it hasn\'t been supported since JDK 8')
   }
