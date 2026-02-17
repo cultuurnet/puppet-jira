@@ -47,8 +47,10 @@ Puppet.
 * JIRA requires a Java Developers Kit (JDK) or Java Run-time Environment (JRE)
   platform to be installed on your server's operating system. Oracle JDK / JRE
   (formerly Sun JDK / JRE) versions 8 (and 11 since JIRA 8.2) are currently
-  supported by Atlassian. OpenJDK version 8 (11 since JIRA 8.2, 17 since JIRA 9.5) are supported
-  as well - Atlassian recommends to use AdoptOpenJDK to get better support
+  supported by Atlassian. OpenJDK version 8 (11 since JIRA 8.2, 17 since JIRA 9.5,
+  21 since JIRA 10.6) are supported as well - Atlassian recommends to use
+  AdoptOpenJDK to get better support.
+
 
 * JIRA requires a relational database to store its issue data. This module
   currently supports PostgreSQL and MySQL and Oracle and Microsoft SQL Server.
